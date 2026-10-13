@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "boosted-redstone",
+	"version": "${version}",
+	"name": "Boosted Redstone",
+	"description": "A mod to improve and simplify the use of Redstone",
+	"authors": [
+		"Maysan-Ishaq ROUIS"
+	],
+	"contact": {
+		"homepage": "https://maysanishaq.github.io/",
+		"sources": "https://github.com/Maysan-Ishaq/boosted_redstone"
+	},
+	"license": "MIT",
+	"icon": "assets/boosted-redstone/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"io.github.maysanishaq.boostedredstone.BoostedRedstone"
+		],
+		"client": [
+			"io.github.maysanishaq.boostedredstone.client.BoostedRedstoneClient"
+		],
+		"fabric-datagen": [
+			"io.github.maysanishaq.boostedredstone.client.BoostedRedstoneDataGenerator"
+		]
+	},
+	"mixins": [
+		"boosted-redstone.mixins.json",
+		{
+			"config": "boosted-redstone.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
