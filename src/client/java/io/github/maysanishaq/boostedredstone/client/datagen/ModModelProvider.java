@@ -1,5 +1,6 @@
 package io.github.maysanishaq.boostedredstone.client.datagen;
 
+import io.github.maysanishaq.boostedredstone.block.ModBlocks;
 import io.github.maysanishaq.boostedredstone.item.ModItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
@@ -14,7 +15,7 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
-
+        blockModelGenerators.createTrivialCube(ModBlocks.PROCESSOR_BLOCK);
     }
 
     @Override

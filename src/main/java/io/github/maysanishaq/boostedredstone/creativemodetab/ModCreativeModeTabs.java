@@ -1,6 +1,7 @@
 package io.github.maysanishaq.boostedredstone.creativemodetab;
 
 import io.github.maysanishaq.boostedredstone.BoostedRedstone;
+import io.github.maysanishaq.boostedredstone.block.ModBlocks;
 import io.github.maysanishaq.boostedredstone.item.ModItems;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.core.Registry;
@@ -16,10 +17,11 @@ public class ModCreativeModeTabs {
             BuiltInRegistries.CREATIVE_MODE_TAB,
             Identifier.fromNamespaceAndPath(BoostedRedstone.MOD_ID, "boosted_redstone_items"),
             FabricCreativeModeTab.builder()
-                    .icon(() -> new ItemStack(ModItems.MECHANIC_KEY))
+                    .icon(() -> new ItemStack(ModBlocks.PROCESSOR_BLOCK))
                     .title(Component.translatable("creativemodetab.boosted-redstone.boosted_redstone_items"))
                     .displayItems(((parameters, output) -> {
                         output.accept(ModItems.MECHANIC_KEY);
+                        output.accept(ModBlocks.PROCESSOR_BLOCK);
                     }))
                     .build()
     );
