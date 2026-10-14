@@ -32,10 +32,5 @@ public class ModItems {
     public static void registerModItems() {
         BoostedRedstone.LOGGER.info("registering mod items for mod " + BoostedRedstone.MOD_ID);
 
-        CreativeModeTabEvents
-                .modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES)
-                .register(output -> {
-            output.accept(MECHANIC_KEY);
-        });
     }
 }
