@@ -1,7 +1,47 @@
 {
-  "variants": {
-    "": {
-      "model": "boosted-redstone:block/processor_block"
+  "multipart": [
+    {
+      "apply": {"model": "boosted-redstone:block/processor_block_tb"}
+    },
+
+
+    {
+      "when": {"north_lit": "false"},
+      "apply": {"model": "boosted-redstone:block/processor_block_unlit_face"}
+    },
+    {
+      "when": {"north_lit": "true"},
+      "apply": {"model": "boosted-redstone:block/processor_block_lit_face"}
+    },
+
+
+    {
+      "when": {"south_lit": "false"},
+      "apply": {"model": "boosted-redstone:block/processor_block_unlit_face", "y": 180}
+    },
+    {
+      "when": {"south_lit": "true"},
+      "apply": {"model": "boosted-redstone:block/processor_block_lit_face", "y": 180}
+    },
+
+
+    {
+      "when": {"east_lit": "false"},
+      "apply": {"model": "boosted-redstone:block/processor_block_unlit_face", "y": 90}
+    },
+    {
+      "when": {"east_lit": "true"},
+      "apply": {"model": "boosted-redstone:block/processor_block_lit_face", "y": 90}
+    },
+
+
+    {
+      "when": {"west_lit": "false"},
+      "apply": {"model": "boosted-redstone:block/processor_block_unlit_face", "y": 270}
+    },
+    {
+      "when": {"west_lit": "true"},
+      "apply": {"model": "boosted-redstone:block/processor_block_lit_face", "y": 270}
     }
-  }
+  ]
 }
