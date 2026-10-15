@@ -1,6 +1,7 @@
 package io.github.maysanishaq.boostedredstone.block;
 
 import io.github.maysanishaq.boostedredstone.BoostedRedstone;
+import io.github.maysanishaq.boostedredstone.block.custom.ProcessorBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -16,7 +17,7 @@ import java.util.function.Function;
 
 public class ModBlocks {
     public static final Block PROCESSOR_BLOCK = registerBlock("processor_block",
-            properties -> new Block(properties.strength(3f)
+            properties -> new ProcessorBlock(properties.strength(3f)
                 .requiresCorrectToolForDrops().sound(SoundType.METAL)
         )
     );
