@@ -1,0 +1,5 @@
+// 26.1.2	-999999999-01-01T00:00:00	Boosted Redstone/Boosted Redstone Recipes
+37fa05bc53cb927297abe5e5c8e01406ba26b02e data/boosted-redstone/advancement/recipes/building_blocks/processor_block.json
+776effdfc054c1431b88782c7e12569dfc23b7e1 data/boosted-redstone/advancement/recipes/tools/mechanic_key.json
+5e8c18c080e01bc831265888a2da8f1c6994ac39 data/boosted-redstone/recipe/mechanic_key.json
+cd2e9267b11cdea8dcdaa8476344d6047c19ceb2 data/boosted-redstone/recipe/processor_block.json

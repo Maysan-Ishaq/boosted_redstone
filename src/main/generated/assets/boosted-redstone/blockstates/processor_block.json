@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "boosted-redstone:block/processor_block"
+    }
+  }
+}
