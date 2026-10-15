@@ -1,5 +1,6 @@
 package io.github.maysanishaq.boostedredstone;
 
+import io.github.maysanishaq.boostedredstone.block.ModBlockEntities;
 import io.github.maysanishaq.boostedredstone.block.ModBlocks;
 import io.github.maysanishaq.boostedredstone.creativemodetab.ModCreativeModeTabs;
 import io.github.maysanishaq.boostedredstone.item.ModItems;
@@ -21,6 +22,7 @@ public class BoostedRedstone implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModBlockEntities.registerBlockEntities();
 		ModCreativeModeTabs.registerModCreativeModeTabs();
 
 	}
