@@ -1,6 +1,15 @@
 package io.github.maysanishaq.boostedredstone.block.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.WrittenBookContent;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -10,6 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jspecify.annotations.Nullable;
 
 public class ProcessorBlock extends Block implements EntityBlock {
@@ -32,6 +42,42 @@ public class ProcessorBlock extends Block implements EntityBlock {
     }
 
     @Override
+    protected InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if(level instanceof ServerLevel) {
+            if(itemStack.is(Items.WRITTEN_BOOK)){
+                BlockEntity blockEntity = level.getBlockEntity(pos);
+                if(blockEntity instanceof ProcessorBlockEntity processorBE){
+                    WrittenBookContent content = itemStack.get(DataComponents.WRITTEN_BOOK_CONTENT);
+                    if(content != null) {
+                        StringBuilder sb = new StringBuilder();
+                        content.pages().forEach(page -> sb.append(page.raw().getString()).append("\n"));
+
+                        processorBE.setTasksText(sb.toString());
+                        player.sendSystemMessage(Component.literal("Book content saved!!"));
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            } else {
+                if(level instanceof ServerLevel) {
+                    BlockEntity blockEntity = level.getBlockEntity(pos);
+
+                    if (blockEntity instanceof ProcessorBlockEntity processorBE) {
+                        String text = processorBE.getTasksText();
+
+                        if (text.isEmpty()) {
+                            player.sendSystemMessage(Component.literal("This block is empty!"));
+                        } else {
+                            player.sendSystemMessage(Component.literal("Content: \n" + text));
+                        }
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            }
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(NORTH_LIT, SOUTH_LIT, EAST_LIT, WEST_LIT);
     }
@@ -45,4 +91,6 @@ public class ProcessorBlock extends Block implements EntityBlock {
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type) {
         return EntityBlock.super.getTicker(level, blockState, type);
     }
+
+
 }
