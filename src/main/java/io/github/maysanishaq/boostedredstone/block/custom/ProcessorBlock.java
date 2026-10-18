@@ -1,6 +1,8 @@
 package io.github.maysanishaq.boostedredstone.block.custom;
 
+import io.github.maysanishaq.boostedredstone.block.ModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -10,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.WrittenBookContent;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -90,7 +93,25 @@ public class ProcessorBlock extends Block implements EntityBlock {
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type) {
         return EntityBlock.super.getTicker(level, blockState, type);
+        // if (level instanceof ServerLevel && type == ModBlockEntities.PROCESSOR_BLOCK_ENTITY) {
+        //     (BlockEntityTicker<T>) (lvl, pos, state, be) ->
+        //             ProcessorBlockEntity.tick(lvl, pos, state, (ProcessorBlockEntity) be)
+        // }
     }
 
+    @Override
+    protected boolean isSignalSource(BlockState state) {
+        return true;
+    }
 
+    @Override
+    protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return switch(direction) {
+            case NORTH -> state.getValue(NORTH_LIT) ? 15: 0;
+            case SOUTH -> state.getValue(SOUTH_LIT) ? 15: 0;
+            case EAST  -> state.getValue(EAST_LIT)  ? 15: 0;
+            case WEST  -> state.getValue(WEST_LIT)  ? 15: 0;
+            default -> 0;
+        };
+    }
 }
