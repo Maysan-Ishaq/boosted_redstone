@@ -92,11 +92,13 @@ public class ProcessorBlock extends Block implements EntityBlock {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type) {
-        return EntityBlock.super.getTicker(level, blockState, type);
-        // if (level instanceof ServerLevel && type == ModBlockEntities.PROCESSOR_BLOCK_ENTITY) {
-        //     (BlockEntityTicker<T>) (lvl, pos, state, be) ->
-        //             ProcessorBlockEntity.tick(lvl, pos, state, (ProcessorBlockEntity) be)
-        // }
+        if (level.isClientSide()) {
+            return null;
+        }
+
+        return type == ModBlockEntities.PROCESSOR_BLOCK_ENTITY
+                ? (lvl, pos, state, be) -> ProcessorBlockEntity.tick(lvl, pos, state, (ProcessorBlockEntity) be)
+                : null;
     }
 
     @Override
