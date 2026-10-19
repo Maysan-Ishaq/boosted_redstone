@@ -109,10 +109,10 @@ public class ProcessorBlock extends Block implements EntityBlock {
     @Override
     protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
         return switch(direction) {
-            case NORTH -> state.getValue(NORTH_LIT) ? 15: 0;
-            case SOUTH -> state.getValue(SOUTH_LIT) ? 15: 0;
-            case EAST  -> state.getValue(EAST_LIT)  ? 15: 0;
-            case WEST  -> state.getValue(WEST_LIT)  ? 15: 0;
+            case NORTH -> state.getValue(SOUTH_LIT) ? 15: 0;
+            case SOUTH -> state.getValue(NORTH_LIT) ? 15: 0;
+            case EAST  -> state.getValue(WEST_LIT)  ? 15: 0;
+            case WEST  -> state.getValue(EAST_LIT)  ? 15: 0;
             default -> 0;
         };
     }
