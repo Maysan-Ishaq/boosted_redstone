@@ -1,6 +1,6 @@
 # Hello, and welcome to Boosted Redstone!
 
-It’s a Minecraft Fabric mod designed to make Redstone more fun for enthusiasts like me.
+It’s a 26.1.2 Minecraft Fabric mod designed to make Redstone more fun for enthusiasts like me.
 
 
 ![Banner](./assets/banner.svg)
