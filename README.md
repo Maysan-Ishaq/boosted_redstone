@@ -3,7 +3,7 @@
 It’s a Minecraft Fabric mod designed to make Redstone more fun for enthusiasts like me.
 
 
-![Banner](./assets/banner.png)
+![Banner](./assets/banner.svg)
 
 ### The stuff
 
